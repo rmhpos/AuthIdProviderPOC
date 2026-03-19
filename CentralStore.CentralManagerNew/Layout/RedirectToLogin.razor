@@ -1,0 +1,9 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    override protected void OnInitialized()
+    {
+        // Redirect to the login page (Keycloak)
+        Navigation.NavigateTo("authentication/login", true);
+    }
+}

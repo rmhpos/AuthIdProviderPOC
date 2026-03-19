@@ -1,7 +1,7 @@
 ﻿using CentralStore.LocalStore.Domain;
 using MassTransit;
-using CentralStore.Shared.Dtos;
 using CentralStore.Shared.Messages;
+using CentralStore.Shared.Dtos.Products;
 
 namespace CentralStore.LocalStore.ProductManagement.CreateProduct
 {
@@ -33,14 +33,14 @@ namespace CentralStore.LocalStore.ProductManagement.CreateProduct
         ConcurrencyToken: product.ConcurrencyToken);
 
     public static ProductDto ToDto(this CreateProductRequest request)
-      => new ProductDto(Id: NewId.NextSequentialGuid(),
-        Name: request.Name,
-        Description: request.Description,
-        Price: request.Price,
-        MinPrice: request.MinPrice,
-        CreatedAt: DateTime.UtcNow,
-        UpdatedAt: DateTime.UtcNow,
-        ConcurrencyToken: Guid.NewGuid()
+      => new ProductDto(id: NewId.NextSequentialGuid(),
+        name: request.Name,
+        description: request.Description,
+        price: request.Price,
+        minPrice: request.MinPrice,
+        createdAt: DateTime.UtcNow,
+        updatedAt: DateTime.UtcNow,
+        concurrencyToken: Guid.NewGuid()
         );
 
     public static CreateProductMessage ToMessage(this ProductDto productDto)

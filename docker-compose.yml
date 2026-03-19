@@ -78,12 +78,12 @@ services:
   #   networks:
   #     - store-app-network
 
-  centralstore:
+  centralstore-api:
     image: ${DOCKER_REGISTRY-}centralstore
     build:
       context: .
       dockerfile: CentralStore/Dockerfile
-    container_name: centralstore
+    container_name: centralstore-api
     ports:
       - "5002:8080"
     environment:
@@ -94,10 +94,16 @@ services:
         condition: service_healthy
      centralstore-db-server:
         condition: service_healthy
+    healthcheck: 
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 10s 
+      timeout: 3s 
+      retries: 5 
+      start_period: 20s
     networks:
       - store-app-network
 
-  localstore-1:
+  localstore-1-api:
     image: ${DOCKER_REGISTRY-}localstore
     build:
       context: .
@@ -114,6 +120,12 @@ services:
         condition: service_healthy
       localstore1-db-server:
         condition: service_healthy
+    healthcheck: 
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 10s 
+      timeout: 3s 
+      retries: 5 
+      start_period: 20s
     networks:
       - store-app-network
 
@@ -137,6 +149,70 @@ services:
   #       condition: service_healthy
   #   networks:
   #     - store-app-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.5
+    container_name: keycloak
+    environment:
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+    ports:
+      - "6001:8080"
+    command: ["start-dev"]
+    volumes:
+      - keycloak_data:/opt/keycloak/data
+      - keycloak_conf:/opt/keycloak/conf
+    networks:
+      - store-app-network
+
+  # central-client:
+  #   image: ${DOCKER_REGISTRY-}centralstore.centralmanager
+  #   build:
+  #     context: .
+  #     dockerfile: CentralStore.CentralManagerNew/Dockerfile
+  #   container_name: central-client
+  #   ports: 
+  #     - "7001:8080"
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #   depends_on:
+  #     centralstore-api:
+  #       condition: service_healthy
+  #   networks:
+  #     - store-app-network
+
+  central-client:
+    build:
+      context: .
+      dockerfile: CentralStore.CentralManagerNew/Dockerfile
+    container_name: central-client
+    ports:
+      - "7001:80"
+    depends_on:
+      centralstore-api:
+        condition: service_healthy
+    networks:
+      - store-app-network
+
+  # store-client:
+  #   image: ${DOCKER_REGISTRY-}centralstore.storemanager
+  #   build:
+  #     context: .
+  #     dockerfile: CentralStore.StoreManager/Dockerfile
+  #   container_name: store-client
+  #   ports: 
+  #     - "7002:8080"
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #   depends_on:
+  #     localstore-1-api:
+  #       condition: service_healthy
+  #   networks:
+  #     - store-app-network
+
+volumes:
+  keycloak_data:
+  keycloak_conf:
 
 networks:
   store-app-network:

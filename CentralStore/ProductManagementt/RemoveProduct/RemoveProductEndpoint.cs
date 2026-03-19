@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CentralStore.ProductManagement.RemoveProduct
 {
-  public class RemoveProductEndpoint : IEndpoint
+  public class RemoveCustomerEndpoint : IEndpoint
   {
     private const string Route = "api/products/{id}/";
     private const string Tag = "Products";

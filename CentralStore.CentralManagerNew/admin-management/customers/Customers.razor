@@ -1,0 +1,59 @@
+﻿@page "/users"
+
+@using System.Linq;
+@using CentralStore.Shared.Dtos;
+@using CentralStore.Shared.Dtos.Users;
+@using Microsoft.AspNetCore.Components.QuickGrid;
+
+<h1>Users</h1>
+
+<div class="toolbar">
+
+    <button class="btn btn-primary" @onclick="AddCustomer">
+        Add
+    </button>
+
+    <button class="btn btn-danger"
+            @onclick="DeleteSelected"
+            disabled="@(!SelectedCustomers.Any())">
+        Delete
+    </button>
+
+    <span class="page-size">
+        Show:
+        <select @bind="Pagination.ItemsPerPage">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+        </select>
+    </span>
+
+</div>
+
+<QuickGrid TGridItem="CustomerDto"
+           Items="CustomerDtos.AsQueryable()"
+           Pagination="Pagination"
+           Class="table table-hover">
+
+    <TemplateColumn TGridItem="CustomerDto">
+        <input type="checkbox"
+               checked="@SelectedCustomers.Contains(context.Id)"
+               @onchange="() => ToggleSelection(context.Id)" />
+    </TemplateColumn>
+
+    <PropertyColumn Property="u => u.FirstName" />
+    <PropertyColumn Property="u => u.LastName" />
+    <PropertyColumn Property="u => u.Email" />
+    <PropertyColumn Property="u => u.CreatedAt" />
+    <PropertyColumn Property="u => u.UpdatedAt" />
+
+    <TemplateColumn TGridItem="CustomerDto" Title="Details">
+        <button class="btn btn-link"
+                @onclick="() => NavigateToCustomer(context.Id)">
+            Open
+        </button>
+    </TemplateColumn>
+
+</QuickGrid>
+
+<Paginator State="Pagination" />

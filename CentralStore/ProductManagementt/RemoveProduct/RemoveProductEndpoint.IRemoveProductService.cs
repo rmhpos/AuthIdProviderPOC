@@ -1,6 +1,6 @@
 ﻿using CentralStore.Domain;
 using CentralStore.Shared;
-using CentralStore.Shared.Dtos;
+using CentralStore.Shared.Dtos.Products;
 
 namespace CentralStore.ProductManagement.RemoveProduct
 {

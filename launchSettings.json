@@ -4,7 +4,9 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "centralstore": "StartDebugging"
+        "centralstore": "StartDebugging",
+        "centralstore.centralmanager": "StartDebugging",
+        "centralstore.storemanager": "StartDebugging"
       }
     }
   }

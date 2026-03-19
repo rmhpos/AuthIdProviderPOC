@@ -1,19 +1,19 @@
 ﻿using CentralStore.LocalStore.Domain;
-using CentralStore.Shared.Dtos;
+using CentralStore.Shared.Dtos.Products;
 
 namespace CentralStore.LocalStore.Shared
 {
   public static class ProductMappings
   {
     public static ProductDto ToDto(this Product product)
-      => new ProductDto(Id: product.Id,
-        Name: product.Name,
-        Description: product.Description,
-        Price: product.Price,
-        MinPrice: product.MinPrice,
-        CreatedAt: product.CreatedAt,
-        UpdatedAt: product.UpdatedAt,
-        ConcurrencyToken: product.ConcurrencyToken);
+      => new ProductDto(id: product.Id,
+        name: product.Name,
+        description: product.Description,
+        price: product.Price,
+        minPrice: product.MinPrice,
+        createdAt: product.CreatedAt,
+        updatedAt: product.UpdatedAt,
+        concurrencyToken: product.ConcurrencyToken);
 
     public static Product ToEntity(this ProductDto productDto)
       => new Product()

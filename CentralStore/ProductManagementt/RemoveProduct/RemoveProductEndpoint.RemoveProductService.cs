@@ -1,7 +1,7 @@
 ﻿using CentralStore.Domain;
 using CentralStore.Shared;
 using Microsoft.EntityFrameworkCore;
-using CentralStore.Shared.Dtos;
+using CentralStore.Shared.Dtos.Products;
 
 namespace CentralStore.ProductManagement.RemoveProduct
 {

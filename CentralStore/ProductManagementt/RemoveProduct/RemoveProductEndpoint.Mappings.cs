@@ -1,4 +1,4 @@
-﻿using CentralStore.Shared.Dtos;
+﻿using CentralStore.Shared.Dtos.Products;
 using CentralStore.Shared.Messages;
 using Microsoft.AspNetCore.Mvc;
 
