@@ -1,6 +1,7 @@
 ﻿using CentralStore.AdminManagement.CreateUser;
 using CentralStore.ProductManagement.Filters;
 using CentralStore.Shared;
+using CentralStore.Shared.Requests.Central;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 

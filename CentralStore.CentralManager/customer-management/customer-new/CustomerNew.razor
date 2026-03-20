@@ -1,0 +1,37 @@
+﻿@page "/customers/new"
+@using CentralStore.Shared.Dtos.Products
+
+<h3>Create New Product</h3>
+
+<EditForm Model="@Customer" OnValidSubmit="SaveCustomer">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <InputText class="form-control" @bind-Value="Customer.FirstName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <InputText class="form-control" @bind-Value="Customer.LastName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <InputText class="form-control" @bind-Value="Customer.Email" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Minimum Price</label>
+        <InputText class="form-control" @bind-Value="Customer.Password" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Store ID</label>
+        <InputText class="form-control" @bind-Value="StoreId" />
+    </div>
+
+    <button type="submit" class="btn btn-primary me-2">Save</button>
+    <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+</EditForm>

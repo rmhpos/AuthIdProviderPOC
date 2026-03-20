@@ -1,5 +1,6 @@
 ﻿using CentralStore.Domain;
 using CentralStore.Shared;
+using CentralStore.Shared.Dtos.Users;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace CentralStore.CustomerManagement.GetCustomer
           .WithTags(Tag);
 
         private static async Task<Results<
-          Ok<Customer>,
+          Ok<CustomerDto>,
           NotFound>> Handle(
           [FromRoute] Guid id,
           CentralStoreDbContext dbContext)
@@ -28,7 +29,7 @@ namespace CentralStore.CustomerManagement.GetCustomer
             if (customer is null)
                 return TypedResults.NotFound();
 
-            return TypedResults.Ok(customer);
+            return TypedResults.Ok(customer.ToDto());
         }
     }
 }

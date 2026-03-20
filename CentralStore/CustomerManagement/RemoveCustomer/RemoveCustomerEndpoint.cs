@@ -16,7 +16,6 @@ namespace CentralStore.CustomerManagement.RemoveCustomer
         private static async Task<Results<NoContent, NotFound, Conflict>> Handle(
           [FromRoute] Guid id,
           [FromBody] RemoveCustomerRequest request,
-          //IMassTransitSendResolver mtResolver,
           IRemoveCustomerService service)
         {
             var previousState = await service.GetCustomerAsync(request);
@@ -31,11 +30,7 @@ namespace CentralStore.CustomerManagement.RemoveCustomer
                     var result = await service.RemoveCustomerAsync(request.Id);
 
                     if (result == 0)
-                        return TypedResults.NotFound();
-
-                    //var endpoint = await mtResolver.GetSendEndpoint(request.StoreId);
-
-                    //await endpoint.Send(new RemoveProductMessage(previousState.ToDto()));
+                        return TypedResults.Conflict();
 
                     await service.SaveChangesAsync();
                     await trans.CommitAsync();

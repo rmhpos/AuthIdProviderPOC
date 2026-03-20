@@ -13,6 +13,7 @@ namespace CentralStore.Shared
               password: customer.Password,
               createdAt: customer.CreatedAt,
               updatedAt: customer.UpdatedAt,
+              storeId: customer.StoreId,
               concurrencyToken: customer.ConcurrencyToken);
 
         public static Customer ToEntity(this CustomerDto customerDto)

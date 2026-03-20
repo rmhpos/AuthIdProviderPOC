@@ -1,0 +1,111 @@
+﻿@page "/customers/{Id:guid}"
+
+@using CentralStore.Shared.Dtos;
+@using Microsoft.AspNetCore.Components.Forms
+
+<h1>Customer Details</h1>
+
+@if (_isLoading)
+{
+    <div class="alert alert-info">
+        Loading customer...
+    </div>
+}
+else if (_customer == null)
+{
+    <div class="alert alert-danger">
+        Customer not found
+    </div>
+}
+else
+{
+    <EditForm Model="_editModel" OnValidSubmit="Save">
+
+        <div class="form-group">
+            <label>First Name</label>
+            <InputText class="form-control"
+                       @bind-Value="_editModel.FirstName"
+                       disabled="@(!_isEditable)" />
+        </div>
+
+        <div class="form-group">
+            <label>Last Name</label>
+            <InputText class="form-control"
+                       @bind-Value="_editModel.LastName"
+                       disabled="@(!_isEditable)" />
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+            <InputText class="form-control"
+                         @bind-Value="_editModel.Email"
+                         disabled="@(!_isEditable)" />
+        </div>
+
+        <div class="form-group">
+            <label>Created At</label>
+            <InputDate class="form-control"
+                       Value="_customer.CreatedAt"
+                       disabled />
+        </div>
+
+        <div class="form-group">
+            <label>Updated At</label>
+            <InputDate class="form-control"
+                       Value="_customer.UpdatedAt"
+                       disabled />
+        </div>
+
+        <div class="form-group">
+            <label>Updated At</label>
+            <InputText class="form-control"
+                       Value="customer.StoreId"
+                       disabled />
+        </div>
+
+        <div class="mt-4">
+
+            <button type="button"
+                    class="btn btn-secondary"
+                    @onclick="EnableEdit"
+                    disabled="@(!_isEditable)">
+                Edit
+            </button>
+
+            <button type="submit"
+                    class="btn btn-primary"
+                    disabled="@(!_isEditable || _isSaving)">
+                Save
+            </button>
+
+            <button type="button"
+                    class="btn btn-warning"
+                    @onclick="CancelEdit"
+                    disabled="@(!_isEditable)">
+                Cancel
+            </button>
+
+            <button type="button"
+                    class="btn btn-outline-secondary"
+                    @onclick="Back">
+                Back
+            </button>
+
+        </div>
+
+        @if (_isSaving)
+        {
+            <div class="mt-3 alert alert-info">
+                Saving...
+            </div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(_errorMessage))
+        {
+            <div class="mt-3 alert alert-danger">
+                @_errorMessage
+            </div>
+        }
+
+    </EditForm>
+}

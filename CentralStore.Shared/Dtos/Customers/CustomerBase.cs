@@ -1,18 +1,18 @@
-﻿namespace CentralStore.Shared.Dtos.Users
+﻿namespace CentralStore.Shared.Dtos.Admin
 {
-    public record CustomerDto
+    public record CustomerDtoBase
     {
-        public CustomerDto() { }
+        public CustomerDtoBase() { }
 
-        public CustomerDto(Guid id,
+        public CustomerDtoBase(Guid id,
             string firstName,
             string lastName,
             string email,
             string password,
             DateTime createdAt,
             DateTime updatedAt,
+            Guid storeId,
             Guid concurrencyToken)
-            : base()
         {
             Id = id;
             FirstName = firstName;

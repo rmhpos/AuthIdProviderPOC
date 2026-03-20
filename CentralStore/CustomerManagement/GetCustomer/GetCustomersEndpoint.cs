@@ -32,17 +32,7 @@ namespace CentralStore.CustomerManagement.GetCustomer
                 .ThenBy(p => p.LastName)
                 .Skip((pageParams.Page - 1) * pageParams.PageSize)
                 .Take(pageParams.PageSize)
-                .Select(p => new CustomerDto
-                {
-                    Id = p.Id,
-                    FirstName = p.FirstName,
-                    LastName = p.LastName,
-                    Email = p.Email,
-                    Password = p.Password,
-                    CreatedAt = p.CreatedAt,
-                    UpdatedAt = p.UpdatedAt,
-                    ConcurrencyToken = p.ConcurrencyToken
-                })
+                .Select(p => p.ToDto())
                 .ToListAsync();
 
             return TypedResults.Ok(customers);
