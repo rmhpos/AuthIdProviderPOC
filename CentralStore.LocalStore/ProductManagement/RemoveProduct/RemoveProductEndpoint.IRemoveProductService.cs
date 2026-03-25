@@ -8,6 +8,6 @@ namespace CentralStore.LocalStore.ProductManagement.RemoveProduct
   {
     Task<Product?> GetProductAsync(RemoveProductRequest request);
     Task<int> RemoveProductAsync(Guid productId);
-    Task<Product> CreateProductAsync(ProductDto dto);
+    Task<Product> CreateProductAsync(ProductDtoBase dto);
   }
 }

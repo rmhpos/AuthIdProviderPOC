@@ -1,5 +1,5 @@
-﻿using CentralStore.Shared.Dtos.Admin;
-using CentralStore.Shared.Dtos.Users;
+﻿using CentralStore.Shared.Dtos.Admin.Customers;
+using CentralStore.Shared.Dtos.Customers;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 
@@ -104,7 +104,7 @@ namespace CentralStore.CentralManager.customer_management.customer_detail
 
         private void Back()
         {
-            Navigation.NavigateTo("/products");
+            Navigation.NavigateTo("/customers");
         }
 
         // needs deep copy herem, but not gonna introduce it becuase it's too much of a hassle for this example.

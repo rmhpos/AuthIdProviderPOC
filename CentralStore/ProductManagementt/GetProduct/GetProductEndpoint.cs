@@ -11,9 +11,10 @@ namespace CentralStore.ProductManagement.GetProduct
     private const string Route = "api/products/{id}/";
     private const string Tag = "Products";
 
-    public void MapEndpoint(WebApplication app)
-      => app.MapGet(Route, Handle)
-      .WithTags(Tag);
+        public void MapEndpoint(WebApplication app)
+          => app.MapGet(Route, Handle)
+          .WithTags(Tag)
+          .RequireAuthorization("CanViewProducts");
 
     private static async Task<Results<
       Ok<Product>,

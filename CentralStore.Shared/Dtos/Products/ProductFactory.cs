@@ -14,6 +14,7 @@
                 minPrice: 0m,
                 createdAt: now,
                 updatedAt: now,
+                storeId: Guid.Empty,
                 concurrencyToken: Guid.NewGuid()
             );
         }

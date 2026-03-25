@@ -26,7 +26,7 @@ namespace CentralStore.LocalStore.ProductManagement.RemoveProduct
         .Where(p => p.Id == productId)
         .ExecuteDeleteAsync();
 
-    public async Task<Product> CreateProductAsync(ProductDto dto)
+    public async Task<Product> CreateProductAsync(ProductDtoBase dto)
     {
       var product = dto.ToEntity();
       _dbContext.Products.Add(product);

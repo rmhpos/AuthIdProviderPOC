@@ -16,7 +16,7 @@
         Guid StoreId,
         Guid ConcurrencyToken);
 
-    public static class UpdateCustomerMappings
+    public static class UpdateRmhUserMappings
     {
         public static UpdateCustomerDto ToDto(this UpdateCustomerRequest request)
           => new UpdateCustomerDto(

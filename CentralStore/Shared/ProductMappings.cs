@@ -13,6 +13,7 @@ namespace CentralStore.Shared
         minPrice: product.MinPrice,
         createdAt: product.CreatedAt,
         updatedAt: product.UpdatedAt,
+        storeId: product.StoreId,
         concurrencyToken: product.ConcurrencyToken);
 
     public static Product ToEntity(this ProductDto productDto)

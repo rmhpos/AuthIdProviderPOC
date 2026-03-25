@@ -11,7 +11,8 @@ namespace CentralStore.CustomerManagement.RemoveCustomer
 
         public void MapEndpoint(WebApplication app)
           => app.MapDelete(Route, Handle)
-          .WithTags(Tag);
+          .WithTags(Tag)
+          .RequireAuthorization(policy => policy.RequireRole("rmh.customers.delete"));
 
         private static async Task<Results<NoContent, NotFound, Conflict>> Handle(
           [FromRoute] Guid id,

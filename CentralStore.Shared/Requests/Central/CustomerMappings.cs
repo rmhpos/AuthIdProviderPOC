@@ -1,4 +1,4 @@
-﻿using CentralStore.Shared.Dtos.Users;
+﻿using CentralStore.Shared.Dtos.Customers;
 
 namespace CentralStore.Shared.Requests.Central
 {
@@ -31,7 +31,7 @@ namespace CentralStore.Shared.Requests.Central
                updatedAt: DateTime.UtcNow,
                storeId: request.StoreId,
                concurrencyToken: Guid.NewGuid()
-               );  
+               );
 
         public static CreateCustomerRequest ToCreateRequest(this CustomerDto customerDto, Guid storeId)
             => new CreateCustomerRequest(

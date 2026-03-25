@@ -2,6 +2,7 @@
 using MassTransit;
 using Microsoft.Extensions.Options;
 using CentralStore.Shared.Messages;
+using CentralStore.ProductManagement.CreateProduct;
 
 namespace CentralStore.ProductManagement.UpdateProduct
 {
@@ -26,7 +27,7 @@ namespace CentralStore.ProductManagement.UpdateProduct
           return;
         }
 
-        var updateRslt = await service.UpdateProductMqAsync(context.Message.CurrentState, storeId);
+        var updateRslt = await service.UpdateProductMqAsync(context.Message.CurrentState.ToDto(storeId), storeId);
 
         if (updateRslt == 0)
         {

@@ -1,6 +1,6 @@
 ﻿using CentralStore.Domain;
 using CentralStore.Shared;
-using CentralStore.Shared.Dtos.Users;
+using CentralStore.Shared.Dtos.Customers;
 using Microsoft.EntityFrameworkCore;
 
 namespace CentralStore.CustomerManagement.RemoveCustomer

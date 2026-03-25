@@ -1,8 +1,8 @@
 ﻿using CentralStore.Domain;
 using CentralStore.Shared;
-using CentralStore.Shared.Dtos.Users;
+using CentralStore.Shared.Dtos.Customers;
 
-namespace CentralStore.AdminManagement.CreateUser
+namespace CentralStore.CustomerManagement.CreateCustomer
 {
     public interface ICreateCustomerService : IService
     {

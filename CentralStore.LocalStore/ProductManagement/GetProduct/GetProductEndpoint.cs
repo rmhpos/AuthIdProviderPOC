@@ -13,7 +13,9 @@ namespace CentralStore.LocalStore.ProductManagement.GetProduct
 
     public void MapEndpoint(WebApplication app)
       => app.MapGet(Route, Handle)
-      .WithTags(Tag);
+      .WithTags(Tag)
+      .RequireAuthorization(policy => policy
+        .RequireRole("rmh.products.read", "rmh.products.write"));
 
     private static async Task<Results<
       Ok<Product>,

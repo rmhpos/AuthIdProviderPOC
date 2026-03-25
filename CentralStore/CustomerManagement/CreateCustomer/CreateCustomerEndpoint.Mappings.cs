@@ -1,7 +1,7 @@
 ﻿using CentralStore.Domain;
 using CentralStore.Shared.Requests.Central;
 
-namespace CentralStore.AdminManagement.CreateUser
+namespace CentralStore.CustomerManagement.CreateCustomer
 {
     public static class CreateCustomerEndpointMappings
     {

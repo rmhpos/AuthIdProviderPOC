@@ -22,6 +22,99 @@ namespace CentralStore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CentralStore.Domain.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ConcurrencyToken")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("8f1a6c9e-2c4b-4a6d-9c7f-1e5a2b3d4c11"),
+                            ConcurrencyToken = new Guid("a3b9d2f1-6e7c-4b8a-9f01-2d3c4e5f6a77"),
+                            CreatedAt = new DateTime(2024, 2, 1, 10, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "maria.petrova@example.com",
+                            FirstName = "Maria",
+                            LastName = "Petrova",
+                            Password = "Password123",
+                            StoreId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedAt = new DateTime(2024, 2, 2, 11, 30, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = new Guid("1c7d9e4a-5b6f-4a2e-8c3d-7f9a1b2c3d44"),
+                            ConcurrencyToken = new Guid("c5e8f1a2-3d4b-4f6a-8c9e-0b1a2d3f4e55"),
+                            CreatedAt = new DateTime(2024, 2, 5, 9, 15, 0, 0, DateTimeKind.Utc),
+                            Email = "ivan.georgiev@example.com",
+                            FirstName = "Ivan",
+                            LastName = "Georgiev",
+                            Password = "Password123",
+                            StoreId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedAt = new DateTime(2024, 2, 6, 10, 45, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = new Guid("7a2e5c1d-9b3f-4c6a-8d1e-2f3a4b5c6d66"),
+                            ConcurrencyToken = new Guid("d7f2a3b4-5c6d-4e7f-9a0b-1c2d3e4f5a66"),
+                            CreatedAt = new DateTime(2024, 2, 10, 14, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "elena.dimitrova@example.com",
+                            FirstName = "Elena",
+                            LastName = "Dimitrova",
+                            Password = "Password123",
+                            StoreId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedAt = new DateTime(2024, 2, 11, 15, 20, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = new Guid("3b4c5d6e-7f8a-4b1c-9d2e-6f7a8b9c0d77"),
+                            ConcurrencyToken = new Guid("e9a1b2c3-d4e5-4f6a-8b9c-0d1e2f3a4b77"),
+                            CreatedAt = new DateTime(2024, 2, 15, 8, 45, 0, 0, DateTimeKind.Utc),
+                            Email = "georgi.ivanov@example.com",
+                            FirstName = "Georgi",
+                            LastName = "Ivanov",
+                            Password = "Password123",
+                            StoreId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedAt = new DateTime(2024, 2, 16, 9, 55, 0, 0, DateTimeKind.Utc)
+                        });
+                });
+
             modelBuilder.Entity("CentralStore.Domain.Product", b =>
                 {
                     b.Property<Guid>("Id")

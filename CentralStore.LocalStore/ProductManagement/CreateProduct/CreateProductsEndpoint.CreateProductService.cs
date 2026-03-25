@@ -14,7 +14,7 @@ namespace CentralStore.LocalStore.ProductManagement.CreateProduct
       _dbContext = dbContext;
     }
 
-    public Product CreateProduct(ProductDto dto)
+    public Product CreateProduct(ProductDtoBase dto)
     {
       var product = dto.ToEntity();
       _dbContext.Products.Add(product);

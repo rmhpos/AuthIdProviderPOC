@@ -16,7 +16,8 @@ namespace CentralStore.LocalStore.ProductManagement.UpdateProduct
     public void MapEndpoint(WebApplication app)
       => app.MapPut(Route, Handle)
       .WithTags(Tag)
-      .AddEndpointFilter<ValidationFilter<UpdateProductRequest>>();
+      .AddEndpointFilter<ValidationFilter<UpdateProductRequest>>()
+      .RequireAuthorization(policy => policy.RequireRole("rmh.products.write"));
 
     private static async Task<Results<NoContent, NotFound, Conflict>> Handle(
       [FromRoute] Guid id,

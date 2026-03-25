@@ -26,7 +26,7 @@ namespace CentralStore.LocalStore.ProductManagement.UpdateProduct
         .Where(p => p.Id == id)
       .SingleOrDefaultAsync();
 
-    public async Task<int> UpdateProductAsync(ProductDto dto)
+    public async Task<int> UpdateProductAsync(ProductDtoBase dto)
       => await _dbContext.Products
         .Where(p => p.Id == dto.Id)
         .ExecuteUpdateAsync(setters => setters
@@ -37,7 +37,7 @@ namespace CentralStore.LocalStore.ProductManagement.UpdateProduct
         .SetProperty(p => p.UpdatedAt, dto.UpdatedAt)
         .SetProperty(p => p.ConcurrencyToken, Guid.NewGuid()));
 
-    public async Task<int> UpdateProductMqAsync(ProductDto dto)
+    public async Task<int> UpdateProductMqAsync(ProductDtoBase dto)
       => await _dbContext.Products
         .Where(p => p.Id == dto.Id)
         .ExecuteUpdateAsync(setters => setters

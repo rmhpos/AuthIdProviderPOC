@@ -1,8 +1,11 @@
 ﻿@page "/products"
 
+@attribute [Authorize(Roles = "rmh.products.read")]
+
 @using System.Linq;
 @using CentralStore.Shared.Dtos;
 @using CentralStore.Shared.Dtos.Products
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.QuickGrid
 
 <h1>Products</h1>

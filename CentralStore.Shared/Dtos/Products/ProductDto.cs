@@ -1,6 +1,6 @@
 ﻿namespace CentralStore.Shared.Dtos.Products
 {
-    public record ProductDto
+    public record ProductDto : ProductDtoBase
     {
         public ProductDto() { }
 
@@ -11,26 +11,13 @@
             decimal minPrice,
             DateTime createdAt,
             DateTime updatedAt,
+            Guid storeId,
             Guid concurrencyToken)
-            : base()
+            : base(id, name, description, price, minPrice, createdAt, updatedAt, concurrencyToken)
         {
-            Id = id;
-            Name = name;
-            Description = description;
-            Price = price;
-            MinPrice = minPrice;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
-            ConcurrencyToken = concurrencyToken;
+            StoreId = storeId;
         }
 
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public decimal MinPrice { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public Guid ConcurrencyToken { get; set; }
+        public Guid StoreId { get; set; }
     }
 }

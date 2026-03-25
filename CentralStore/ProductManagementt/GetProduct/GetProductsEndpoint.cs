@@ -3,25 +3,29 @@ using CentralStore.Shared;
 using CentralStore.Shared.Dtos.Products;
 using CentralStore.Shared.Requests;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CentralStore.ProductManagementt.GetProduct
 {
-    public class GetCustomerEndpoint : IEndpoint
+    public class GetProductsEndpoint : IEndpoint
     {
         private const string Route = "api/products";
         private const string Tag = "Products";
 
         public void MapEndpoint(WebApplication app)
           => app.MapGet(Route, Handle)
-          .WithTags(Tag);
+          .RequireAuthorization()
+          .WithTags(Tag)
+          .RequireAuthorization("CanViewProducts");
 
         private static async Task<Results<
           Ok<List<ProductDto>>,
           BadRequest<string>>> Handle(
-          [FromBody] PageParams pageParams,
-          CentralStoreDbContext dbContext)
+          [AsParameters] PageParams pageParams,
+          CentralStoreDbContext dbContext,
+          HttpContext httpContext,
+          ClaimsPrincipal user)
         {
             if (pageParams.Page < 1 || pageParams.PageSize < 1)
                 return TypedResults.BadRequest("Page and PageSize must be greater than 0.");

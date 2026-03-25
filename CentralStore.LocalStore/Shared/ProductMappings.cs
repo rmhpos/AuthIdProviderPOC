@@ -5,8 +5,8 @@ namespace CentralStore.LocalStore.Shared
 {
   public static class ProductMappings
   {
-    public static ProductDto ToDto(this Product product)
-      => new ProductDto(id: product.Id,
+    public static ProductDtoBase ToDto(this Product product)
+      => new ProductDtoBase(id: product.Id,
         name: product.Name,
         description: product.Description,
         price: product.Price,
@@ -15,7 +15,7 @@ namespace CentralStore.LocalStore.Shared
         updatedAt: product.UpdatedAt,
         concurrencyToken: product.ConcurrencyToken);
 
-    public static Product ToEntity(this ProductDto productDto)
+    public static Product ToEntity(this ProductDtoBase productDto)
       => new Product()
       {
         Id = productDto.Id,

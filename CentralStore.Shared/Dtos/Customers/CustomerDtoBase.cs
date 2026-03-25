@@ -1,4 +1,4 @@
-﻿namespace CentralStore.Shared.Dtos.Admin
+﻿namespace CentralStore.Shared.Dtos.Admin.Customers
 {
     public record CustomerDtoBase
     {

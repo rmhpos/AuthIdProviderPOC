@@ -1,15 +1,13 @@
-﻿using CentralStore.LocalStore.Shared;
+﻿using CentralStore.Shared.Messages;
 using MassTransit;
-using Microsoft.Extensions.Options;
-using CentralStore.Shared.Messages;
 
 namespace CentralStore.LocalStore.ProductManagement.RemoveProduct
 {
-  public class RemovalFailedConsumer(IRemoveProductService service) : IConsumer<RemovalFailedMessage>
-  {
-    public async Task Consume(ConsumeContext<RemovalFailedMessage> context)
+    public class RemovalFailedConsumer(IRemoveProductService service) : IConsumer<RemovalFailedMessage>
     {
-      var removeRslt = await service.CreateProductAsync(context.Message.PreviousState);
+        public async Task Consume(ConsumeContext<RemovalFailedMessage> context)
+        {
+            var removeRslt = await service.CreateProductAsync(context.Message.PreviousState);
+        }
     }
-  }
 }

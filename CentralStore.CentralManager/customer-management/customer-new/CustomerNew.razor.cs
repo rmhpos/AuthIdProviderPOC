@@ -1,4 +1,4 @@
-﻿using CentralStore.Shared.Dtos.Users;
+﻿using CentralStore.Shared.Dtos.Customers;
 using CentralStore.Shared.Requests.Central;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;

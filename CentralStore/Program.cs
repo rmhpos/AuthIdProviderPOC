@@ -19,8 +19,14 @@ namespace CentralStore
             builder.Services
                 .AddValidatorsFromAssembly(typeof(Program).Assembly)
                 .AddRMHOpenApi()
-                .AddRMHAuthentication()
-                .AddAuthorization()
+                .AddRMHAuthentication(builder.Configuration)
+                .AddAuthorization(options => 
+                {
+                    options.AddPolicy("CanViewProducts", policy => policy.RequireRole("rmh.products.read"));
+                    options.AddPolicy("CanUpdateProducts", policy => policy.RequireRole("rmh.products.update"));
+                    options.AddPolicy("CanViewCustomers", policy => policy.RequireRole("rmh.customers.read"));
+                    options.AddPolicy("CanUpdateCustomers", policy => policy.RequireRole("rmh.customers.update"));
+                })
                 .RegisterEndpoints()
                 .AddRMHCustomServices()
                 .ConfigureHttpJsonOptions(options =>
@@ -33,7 +39,7 @@ namespace CentralStore
                 {
                     options.AddPolicy("central-manager-ui", policy =>
                     {
-                        policy.WithOrigins("http://localhost:5087")
+                        policy.WithOrigins("http://localhost:7001")
                             .AllowAnyMethod()
                             .AllowAnyHeader();
                     });
@@ -55,6 +61,8 @@ namespace CentralStore
                 }
             }
 
+            app.UseCors("central-manager-ui");
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -62,7 +70,6 @@ namespace CentralStore
 
             if (app.Environment.IsDevelopment())
             {
-                app.UseCors("central-manager-ui");
                 app.MapOpenApi();
                 app.UseSwagger();
                 app.UseSwaggerUI();

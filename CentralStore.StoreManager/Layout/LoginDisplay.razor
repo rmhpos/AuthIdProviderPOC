@@ -1,0 +1,44 @@
+﻿@using CentralStore.StoreManager.Auth2
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inject NavigationManager Navigation
+@inject AuthService AuthService
+
+@if (AuthService.IsAuthenticated)
+{
+    <p>Hello, @AuthService.User.Identity?.Name!</p>
+    <button class="nav-link btn btn-link" @onclick="BeginLogOutAsync">Log out</button>
+}
+else
+{
+    <button class="nav-link btn btn-link" @onclick="GotToLogIn">Log in</button>
+    <button class="nav-link btn btn-link" @onclick="GoToRegister">Register</button>
+}
+
+@code{
+    protected override void OnInitialized()
+    {
+        AuthService.OnAuthStateChanged += StateHasChanged;
+    }
+
+    public void GotToLogIn()
+    {
+        Navigation.NavigateTo("auth/login");
+    }
+
+    public async Task BeginLogOutAsync()
+    {
+        await AuthService.LogOutAsync();
+        Navigation.NavigateTo("auth/login");
+    }
+
+    public void GoToRegister()
+    {
+        Navigation.NavigateTo("auth/register");
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= StateHasChanged;
+    }
+}

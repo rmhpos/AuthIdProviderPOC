@@ -12,8 +12,8 @@ namespace CentralStore.LocalStore.ProductManagement.UpdateProduct
 
   public static class UpdateProductMappings
   {
-    public static ProductDto ToDto(this UpdateProductRequest request)
-      => new ProductDto(
+    public static ProductDtoBase ToDto(this UpdateProductRequest request)
+      => new ProductDtoBase(
         id: request.Id,
         name: request.Name,
         description: request.Description,

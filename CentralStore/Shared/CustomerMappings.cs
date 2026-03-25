@@ -1,5 +1,5 @@
 ﻿using CentralStore.Domain;
-using CentralStore.Shared.Dtos.Users;
+using CentralStore.Shared.Dtos.Customers;
 
 namespace CentralStore.Shared
 {

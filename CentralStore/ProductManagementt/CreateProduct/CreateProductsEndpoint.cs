@@ -14,7 +14,8 @@ namespace CentralStore.ProductManagement.CreateProduct
     public void MapEndpoint(WebApplication app)
       => app.MapPost(Route, Handle)
       .WithTags(Tag)
-      .AddEndpointFilter<ValidationFilter<CreateProductRequest>>();
+      .AddEndpointFilter<ValidationFilter<CreateProductRequest>>()
+      .RequireAuthorization(policy => policy.RequireRole("rmh.products.create"));
 
     private static async Task<Results<
       Created<CreateProductResponse>,

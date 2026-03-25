@@ -216,59 +216,48 @@ namespace CentralStore.Domain
                 product.HasData(
             new Customer
             {
-                Id = NewId.NextSequentialGuid(),
-                FirstName = "Alex",
-                LastName = "Johnson",
-                Email = "alex.johnson@example.com",
+                Id = Guid.Parse("8f1a6c9e-2c4b-4a6d-9c7f-1e5a2b3d4c11"),
+                FirstName = "Maria",
+                LastName = "Petrova",
+                Email = "maria.petrova@example.com",
                 Password = "Password123",
-                CreatedAt = new DateTime(2024, 1, 3, 8, 0, 0, DateTimeKind.Utc),
-                UpdatedAt = new DateTime(2024, 1, 4, 9, 15, 0, DateTimeKind.Utc),
-                ConcurrencyToken = NewId.NextSequentialGuid()
+                CreatedAt = new DateTime(2024, 2, 1, 10, 0, 0, DateTimeKind.Utc),
+                UpdatedAt = new DateTime(2024, 2, 2, 11, 30, 0, DateTimeKind.Utc),
+                ConcurrencyToken = Guid.Parse("a3b9d2f1-6e7c-4b8a-9f01-2d3c4e5f6a77")
             },
-            new Customer
-            {
-                Id = NewId.NextSequentialGuid(),
-                FirstName = "Lumen",
-                LastName = "Lounge Chair",
-                Email = "lumen.lounge@example.com",
-                Password = "Password123",
-                CreatedAt = new DateTime(2024, 1, 5, 13, 30, 0, DateTimeKind.Utc),
-                UpdatedAt = new DateTime(2024, 1, 5, 16, 45, 0, DateTimeKind.Utc),
-                ConcurrencyToken = NewId.NextSequentialGuid()
-            },
-            new Customer
-            {
-                Id = NewId.NextSequentialGuid(),
-                FirstName = "Northwind",
-                LastName = "Standing Desk",
-                Email = "northwind.standing@example.com",
-                Password = "Password123",
-                CreatedAt = new DateTime(2024, 1, 6, 9, 20, 0, DateTimeKind.Utc),
-                UpdatedAt = new DateTime(2024, 1, 6, 9, 25, 0, DateTimeKind.Utc),
-                ConcurrencyToken = NewId.NextSequentialGuid()
-            },
-            new Customer
-            {
-                Id = NewId.NextSequentialGuid(),
-                FirstName = "Solstice",
-                LastName = "Task Lamp",
-                Email = "solstice.task@example.com",
-                Password = "Password123",
-                CreatedAt = new DateTime(2024, 1, 7, 7, 10, 0, DateTimeKind.Utc),
-                UpdatedAt = new DateTime(2024, 1, 7, 7, 10, 0, DateTimeKind.Utc),
-                ConcurrencyToken = NewId.NextSequentialGuid()
-            },
-            new Customer
-            {
-                Id = NewId.NextSequentialGuid(),
-                FirstName = "Vela",
-                LastName = "Reception Sofa",
-                Email = "vela.reception@example.com",
-                Password = "Password123",
-                CreatedAt = new DateTime(2024, 1, 8, 14, 0, 0, DateTimeKind.Utc),
-                UpdatedAt = new DateTime(2024, 1, 9, 10, 0, 0, DateTimeKind.Utc),
-                ConcurrencyToken = NewId.NextSequentialGuid()
-            });
+new Customer
+{
+    Id = Guid.Parse("1c7d9e4a-5b6f-4a2e-8c3d-7f9a1b2c3d44"),
+    FirstName = "Ivan",
+    LastName = "Georgiev",
+    Email = "ivan.georgiev@example.com",
+    Password = "Password123",
+    CreatedAt = new DateTime(2024, 2, 5, 9, 15, 0, DateTimeKind.Utc),
+    UpdatedAt = new DateTime(2024, 2, 6, 10, 45, 0, DateTimeKind.Utc),
+    ConcurrencyToken = Guid.Parse("c5e8f1a2-3d4b-4f6a-8c9e-0b1a2d3f4e55")
+},
+new Customer
+{
+    Id = Guid.Parse("7a2e5c1d-9b3f-4c6a-8d1e-2f3a4b5c6d66"),
+    FirstName = "Elena",
+    LastName = "Dimitrova",
+    Email = "elena.dimitrova@example.com",
+    Password = "Password123",
+    CreatedAt = new DateTime(2024, 2, 10, 14, 0, 0, DateTimeKind.Utc),
+    UpdatedAt = new DateTime(2024, 2, 11, 15, 20, 0, DateTimeKind.Utc),
+    ConcurrencyToken = Guid.Parse("d7f2a3b4-5c6d-4e7f-9a0b-1c2d3e4f5a66")
+},
+new Customer
+{
+    Id = Guid.Parse("3b4c5d6e-7f8a-4b1c-9d2e-6f7a8b9c0d77"),
+    FirstName = "Georgi",
+    LastName = "Ivanov",
+    Email = "georgi.ivanov@example.com",
+    Password = "Password123",
+    CreatedAt = new DateTime(2024, 2, 15, 8, 45, 0, DateTimeKind.Utc),
+    UpdatedAt = new DateTime(2024, 2, 16, 9, 55, 0, DateTimeKind.Utc),
+    ConcurrencyToken = Guid.Parse("e9a1b2c3-d4e5-4f6a-8b9c-0d1e2f3a4b77")
+});
             });
 
             modelBuilder.AddInboxStateEntity();

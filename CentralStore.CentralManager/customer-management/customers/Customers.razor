@@ -1,11 +1,14 @@
-﻿@page "/users"
+﻿@page "/customers"
+
+@attribute [Authorize(Policy = "CanViewCustomers")]
 
 @using System.Linq;
 @using CentralStore.Shared.Dtos;
-@using CentralStore.Shared.Dtos.Users;
+@using CentralStore.Shared.Dtos.Customers
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.QuickGrid;
 
-<h1>Users</h1>
+<h1>Customers</h1>
 
 <div class="toolbar">
 

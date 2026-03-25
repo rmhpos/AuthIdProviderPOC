@@ -1,5 +1,6 @@
 ﻿using CentralStore.Shared.Dtos.Products;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
 
 namespace CentralStore.CentralManager.products_management.product_details
@@ -21,6 +22,9 @@ namespace CentralStore.CentralManager.products_management.product_details
 
         [Inject] private IHttpClientFactory HttpClientFactory { get; set; } = default!;
         [Inject] private NavigationManager Navigation { get; set; } = default!;
+
+        //for demo purposes when we want to see how to check authorization in code
+        //[Inject] private AuthenticationStateProvider _authStateProvider { get; set; } = default!;
 
         protected override async Task OnInitializedAsync()
         {
@@ -46,10 +50,21 @@ namespace CentralStore.CentralManager.products_management.product_details
             }
         }
 
-        private void EnableEdit()
+        private async Task EnableEdit()
         {
             if (product == null)
                 return;
+
+            // How to do it in code
+            //var user = (await _authStateProvider.GetAuthenticationStateAsync()).User;
+
+            //if (user.IsInRole("rmh.products.update"))
+            //{
+            //    // show delete button
+
+            //    editModel = Clone(product);
+            //    isEditable = true;
+            //}
 
             editModel = Clone(product);
             isEditable = true;
@@ -118,6 +133,7 @@ namespace CentralStore.CentralManager.products_management.product_details
                 MinPrice = source.MinPrice,
                 CreatedAt = source.CreatedAt,
                 UpdatedAt = source.UpdatedAt,
+                StoreId = source.StoreId,
                 ConcurrencyToken = source.ConcurrencyToken
             };
         }

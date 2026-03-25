@@ -181,18 +181,18 @@ services:
   #   networks:
   #     - store-app-network
 
-  central-client:
-    build:
-      context: .
-      dockerfile: CentralStore.CentralManagerNew/Dockerfile
-    container_name: central-client
-    ports:
-      - "7001:80"
-    depends_on:
-      centralstore-api:
-        condition: service_healthy
-    networks:
-      - store-app-network
+  # central-client:
+  #   build:
+  #     context: .
+  #     dockerfile: CentralStore.CentralManager/Dockerfile
+  #   container_name: central-client
+  #   ports:
+  #     - "7001:80"
+  #   depends_on:
+  #     centralstore-api:
+  #       condition: service_healthy
+  #   networks:
+  #     - store-app-network
 
   # store-client:
   #   image: ${DOCKER_REGISTRY-}centralstore.storemanager

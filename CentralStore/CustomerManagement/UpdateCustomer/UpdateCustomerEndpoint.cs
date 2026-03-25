@@ -1,19 +1,21 @@
-﻿using CentralStore.ProductManagement.Filters;
+﻿using CentralStore.CustomerManagement.UpdateCustomer;
+using CentralStore.ProductManagement.Filters;
 using CentralStore.Shared;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CentralStore.CustomerManagement.UpdateCustomer
+namespace CentralStore.RmhUsersManagement.UpdateCustomer
 {
-    public class UpdateCustomerEndpoint : IEndpoint
+    public class UpdateRmhUserEndpoint : IEndpoint
     {
-        private const string Route = "api/customers/{id}/";
-        private const string Tag = "Customers";
+        private const string Route = "api/rmhusers/{id}/";
+        private const string Tag = "RmhUsers";
 
         public void MapEndpoint(WebApplication app)
           => app.MapPut(Route, Handle)
           .WithTags(Tag)
-          .AddEndpointFilter<ValidationFilter<UpdateCustomerRequest>>();
+          .AddEndpointFilter<ValidationFilter<UpdateCustomerRequest>>()
+          .RequireAuthorization("CanUpdateCustomers");
 
         private static async Task<Results<NoContent, NotFound, Conflict>> Handle(
           [FromRoute] Guid id,

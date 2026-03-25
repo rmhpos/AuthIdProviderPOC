@@ -1,6 +1,9 @@
 ﻿@page "/customers/{Id:guid}"
 
+@attribute [Authorize(Policy = "CanViewCustomers")]
+
 @using CentralStore.Shared.Dtos;
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 
 <h1>Customer Details</h1>
@@ -20,6 +23,13 @@ else if (_customer == null)
 else
 {
     <EditForm Model="_editModel" OnValidSubmit="Save">
+
+        <div class="form-group">
+            <label>Id</label>
+            <input class="form-control"
+                   value="@_customer.Id"
+                   disabled />
+        </div>
 
         <div class="form-group">
             <label>First Name</label>
@@ -45,45 +55,46 @@ else
         <div class="form-group">
             <label>Created At</label>
             <InputDate class="form-control"
-                       Value="_customer.CreatedAt"
+                       @bind-Value="_customer.CreatedAt"
                        disabled />
         </div>
 
         <div class="form-group">
             <label>Updated At</label>
             <InputDate class="form-control"
-                       Value="_customer.UpdatedAt"
+                       @bind-Value="_customer.UpdatedAt"
                        disabled />
         </div>
 
         <div class="form-group">
-            <label>Updated At</label>
-            <InputText class="form-control"
-                       Value="customer.StoreId"
+            <label>Store Id</label>
+            <input class="form-control"
+                       value="@_customer.StoreId"
                        disabled />
         </div>
 
         <div class="mt-4">
 
-            <button type="button"
-                    class="btn btn-secondary"
-                    @onclick="EnableEdit"
-                    disabled="@(!_isEditable)">
-                Edit
-            </button>
+            <AuthorizeView Context="authContext" Policy="CanUpdateCustomers">
+                <button type="button"
+                        class="btn btn-secondary"
+                        @onclick="EnableEdit"
+                        disabled="@(!_isEditable)">
+                    Edit
+                </button>
+                <button type="submit"
+                        class="btn btn-primary"
+                        disabled="@(!_isEditable || _isSaving)">
+                    Save
+                </button>
 
-            <button type="submit"
-                    class="btn btn-primary"
-                    disabled="@(!_isEditable || _isSaving)">
-                Save
-            </button>
-
-            <button type="button"
-                    class="btn btn-warning"
-                    @onclick="CancelEdit"
-                    disabled="@(!_isEditable)">
-                Cancel
-            </button>
+                <button type="button"
+                        class="btn btn-warning"
+                        @onclick="CancelEdit"
+                        disabled="@(!_isEditable)">
+                    Cancel
+                </button>
+            </AuthorizeView>
 
             <button type="button"
                     class="btn btn-outline-secondary"

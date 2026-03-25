@@ -1,4 +1,4 @@
-﻿using CentralStore.Shared.Dtos.Products;
+﻿using CentralStore.Shared.Entities;
 
 namespace CentralStore.Domain
 {

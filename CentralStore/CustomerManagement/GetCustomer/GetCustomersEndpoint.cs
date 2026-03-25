@@ -1,9 +1,8 @@
 ﻿using CentralStore.Domain;
 using CentralStore.Shared;
-using CentralStore.Shared.Dtos.Users;
+using CentralStore.Shared.Dtos.Customers;
 using CentralStore.Shared.Requests;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CentralStore.CustomerManagement.GetCustomer
@@ -15,12 +14,13 @@ namespace CentralStore.CustomerManagement.GetCustomer
 
         public void MapEndpoint(WebApplication app)
           => app.MapGet(Route, Handle)
-          .WithTags(Tag);
+          .WithTags(Tag)
+          .RequireAuthorization("CanViewCustomers");
 
         private static async Task<Results<
           Ok<List<CustomerDto>>,
           BadRequest<string>>> Handle(
-          [FromBody] PageParams pageParams,
+          [AsParameters] PageParams pageParams,
           CentralStoreDbContext dbContext)
         {
             if (pageParams.Page < 1 || pageParams.PageSize < 1)

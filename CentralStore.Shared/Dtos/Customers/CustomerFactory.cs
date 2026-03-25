@@ -1,6 +1,6 @@
-﻿using CentralStore.Shared.Dtos.Users;
+﻿using CentralStore.Shared.Dtos.Customers;
 
-namespace CentralStore.Shared.Dtos.Admin
+namespace CentralStore.Shared.Dtos.Admin.Customers
 {
     public static class CustomerFactory
     {

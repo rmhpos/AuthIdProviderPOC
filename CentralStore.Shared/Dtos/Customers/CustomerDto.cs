@@ -1,6 +1,6 @@
-﻿using CentralStore.Shared.Dtos.Admin;
+﻿using CentralStore.Shared.Dtos.Admin.Customers;
 
-namespace CentralStore.Shared.Dtos.Users
+namespace CentralStore.Shared.Dtos.Customers
 {
     public record CustomerDto : CustomerDtoBase
     {

@@ -32,8 +32,8 @@ namespace CentralStore.LocalStore.ProductManagement.CreateProduct
         UpdateAt: product.UpdatedAt,
         ConcurrencyToken: product.ConcurrencyToken);
 
-    public static ProductDto ToDto(this CreateProductRequest request)
-      => new ProductDto(id: NewId.NextSequentialGuid(),
+    public static ProductDtoBase ToDto(this CreateProductRequest request)
+      => new ProductDtoBase(id: NewId.NextSequentialGuid(),
         name: request.Name,
         description: request.Description,
         price: request.Price,

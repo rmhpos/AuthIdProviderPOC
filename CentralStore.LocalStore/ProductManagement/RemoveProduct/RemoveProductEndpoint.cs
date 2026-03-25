@@ -14,7 +14,8 @@ namespace CentralStore.LocalStore.ProductManagement.RemoveProduct
 
     public void MapEndpoint(WebApplication app)
       => app.MapDelete(Route, Handle)
-      .WithTags(Tag);
+      .WithTags(Tag)
+      .RequireAuthorization(policy => policy.RequireRole("rmh.products.write"));
 
     private static async Task<Results<NoContent, NotFound, Conflict>> Handle(
       [FromRoute] Guid id,

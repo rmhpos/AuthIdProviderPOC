@@ -1,4 +1,5 @@
-﻿using CentralStore.Shared;
+﻿using CentralStore.ProductManagement.CreateProduct;
+using CentralStore.Shared;
 using CentralStore.Shared.Messages;
 using MassTransit;
 using Microsoft.Extensions.Options;
@@ -12,7 +13,7 @@ namespace CentralStore.ProductManagement.UpdateProduct
     public async Task Consume(ConsumeContext<UpdateFailedMessage> context)
     {
       Guid.TryParse(context.GetHeader(options.Value.StoreIdHeaderKey), out var storeId);
-      var updateRslt = await service.UpdateProductMqAsync(context.Message.PreviousState, storeId);
+      var updateRslt = await service.UpdateProductMqAsync(context.Message.PreviousState.ToDto(storeId), storeId);
     }
   }
 }

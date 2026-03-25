@@ -28,6 +28,7 @@ namespace CentralStore.ProductManagement.UpdateProduct
             minPrice: request.MinPrice,
             createdAt: DateTime.UtcNow, // or fetch from DB if updating
             updatedAt: DateTime.UtcNow,
+            storeId: request.StoreId,
             concurrencyToken: request.ConcurrencyToken);
 
         public static UpdateProductMessage ToMessage(ProductDto previousState, ProductDto currentState)

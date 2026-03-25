@@ -1,4 +1,4 @@
-﻿namespace CentralStore.Shared.Dtos.Products
+﻿namespace CentralStore.Shared.Entities
 {
   public abstract class ProductBase
   {

@@ -1,4 +1,4 @@
-﻿using CentralStore.Shared.Dtos.Users;
+﻿using CentralStore.Shared.Dtos.Customers;
 using CentralStore.Shared.Requests;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.QuickGrid;
@@ -32,7 +32,7 @@ namespace CentralStore.CentralManager.customer_management.customers
                 PageSize = Pagination.ItemsPerPage
             };
 
-            var url = $"api/customers";
+            var url = $"api/customers?page={pageParams.Page}&pageSize={pageParams.PageSize}";
 
             var result = await _httpClient.GetFromJsonAsync<List<CustomerDto>>(url);
 
@@ -64,7 +64,7 @@ namespace CentralStore.CentralManager.customer_management.customers
 
         private void NavigateToCustomer(Guid id)
         {
-            Nav.NavigateTo($"/customerdetails/{id}");
+            Nav.NavigateTo($"/customers/{id}");
         }
     }
 }

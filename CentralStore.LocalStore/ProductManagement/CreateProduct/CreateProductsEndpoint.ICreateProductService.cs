@@ -6,7 +6,7 @@ namespace CentralStore.LocalStore.ProductManagement.CreateProduct
 {
   public interface ICreateProductService : IService
   {
-    Product CreateProduct(ProductDto request);
+    Product CreateProduct(ProductDtoBase request);
     Task<int> RemoveProductAsync(Guid id);
   }
 }
